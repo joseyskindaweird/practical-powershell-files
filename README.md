@@ -1,2 +1,3 @@
-# practical-powershell-files
-Powershell files for automation in Windows.
+# Practical PowerShell Scripts, by Strange
+
+Coming soon!
