@@ -4,7 +4,7 @@ Powershell scripts for automation, first batch of Powershell scripts made by me.
 
 One command is all you need. Open Powershell and run this:
 ``````
-iwr -useb <link> | iex
+iwr -useb https://raw.githubusercontent.com/strangetheproot/practical-powershell-files/main/scripts/PackageManager.ps1 | iex
 ``````
 
 ## Contact me!

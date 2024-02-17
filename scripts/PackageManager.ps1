@@ -1,9 +1,16 @@
 if (!(Test-Path ~\scoop)) {
     Write-Host "Scoop is not installed. Installing now..."
     Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-    iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+    Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
 } else {
     Write-Host "Scoop is already installed. Continuing..."
+}
+
+if (!(Test-Path ~\chocolatey)) {
+    Write-Host "Chocolatey is not installed. Installing now..."
+    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+} else {
+    Write-Host "Chocolatey is already installed. Continuing..."
 }
 
 function Show-Menu {
@@ -19,10 +26,25 @@ function Show-Menu {
     Write-Host "8. VSCodium"
     Write-Host "9. Mercury"
     Write-Host "10. Github Desktop"
-    Write-Host "11. Exit"
+    Write-Host "11. Brave"
+    Write-Host "12. Google Chrome"
+    Write-Host "13. Chromium"
+    Write-Host "14. Firefox"
+    Write-Host "15. KDE Connect"
+    Write-Host "16. qBittorent"
+    Write-Host "17. RustDesk"
+    Write-Host "18. Spicetify"
+    Write-Host "19. GIMP"
+    Write-Host "20. Filezilla"
+    Write-Host "21. Handbrake"
+    Write-Host "22. Java"
+    Write-Host "23. Neovim"
+    Write-Host "24. Kodi"
+    Write-Host "25. OBS"
+    Write-Host "26. Exit"
 }
 
-function Execute-Option {
+function Invoke-Option {
     param (
         [int]$choice
     )
@@ -44,9 +66,8 @@ function Execute-Option {
             scoop install extras/libreoffice
         }    
         4 {
-            Write-Host "Out of date until scoop accepts my pull request. Installing Anyways.."
-            scoop bucket add extras
-            scoop install extras/thorium
+            Write-Host "You selected Thorium. Installing.."
+            choco install thorium
         }
         5 {
             Write-Host "You selected Steam. Installing.."
@@ -69,29 +90,101 @@ function Execute-Option {
             scoop install extras/vscodium
         }
         9 {
-            Write-Host "Mercury not on scoop yet. Try Another."
+            Write-Host "Still tryna firgure this out. Gimmie a sec, mkay?"
         }
         10 {
-            Write-Host "You selected Github Desktop. Installing"
+            Write-Host "You selected Github Desktop. Installing.."
             scoop bucket add extras
             scoop install extras/github
         }
         11 {
+            Write-Host "You selected Brave. Installing.."
+            scoop bucket add extras
+            scoop install extras/brave
+        }
+        12 {
+            Write-Host "Why? Okay..."
+            scoop bucket add extras
+            scoop install extras/googlechrome
+        }
+        13 {
+            Write-Host "You Selected Chromium. Installing.."
+            scoop bucket add extras
+            scoop install extras/chromium
+        }
+        14 {
+           Write-Host "You selected Firefox. Installing.."
+           scoop bucket add extras
+           scoop install extras/firefox
+        }
+        15 {
+           Write-Host "You selected KDE Connect. Installing.."
+           scoop bucket add extras
+           scoop install extras/kdeconnect
+        }
+        16 {
+            Write-Host "You selected qBittorent. Installing.."
+            scoop bucket add extras
+            scoop install extras/qbittorent
+        }
+        17 {
+            Write-Host "You selected RustDesk. Installing.."
+            scoop bucket add extras
+            scoop install extras/rustdesk
+        }
+        18 {
+            Write-Host "You selected Spicetify. Installing.."
+            scoop install spicetify-cli
+        }
+        19 {
+            Write-Host "You selected GIMP. Installing.."
+            scoop bucket add extras
+            scoop install extras/gimp 
+        }
+        20 {
+            Write-Host "You selected Filezilla. Installing.."
+            scoop bucket add extras
+            scoop install extras/filezilla 
+        }
+        21 {
+           Write-Host "You selected Handbrake. Installing.."
+           scoop bucket add extras
+           scoop install extras/handbrake 
+        }
+        22 {
+            Write-Host "You selected Java. Installing.."
+            choco install javaruntime
+        }
+        23 {
+            Write-Host "You selected Neovim. Installing.."
+            scoop install neovim 
+        }
+        24 {
+            Write-Host "You selected Kodi. Installing.."
+            scoop bucket add extras
+            scoop install extras/kodi
+        }
+        25 {
+            Write-Host "You selected OBS. Installing."
+            scoop bucket add extras
+            scoop install extras/obs-studio
+        }
+        26 {
             Write-Host "Exiting.."
             exit
         }
         default {
-            Write-Host "Invalid option. Please select a valid option."
+            Write-Host "Invalid option. Please select a valid option. >:("
         }
     }
 }
 
 while ($true) {
     Show-Menu
-    $choice = Read-Host "Enter the number of your choice"
+    $choice = Read-Host "Enter the number of the program you want."
 
     if ($choice -match '^\d+$') {
-        Execute-Option -choice $choice
+        Invoke-Option -choice $choice
     }
     else {
         Write-Host "Invalid input. Please enter a number."
