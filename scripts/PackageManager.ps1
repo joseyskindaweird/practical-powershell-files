@@ -1,4 +1,4 @@
-if (!(Test-Path ~\scoop)) {
+    if (!(Test-Path ~\scoop)) {
     Write-Host "Scoop is not installed. Installing now..."
     Set-ExecutionPolicy RemoteSigned -scope CurrentUser
     Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
