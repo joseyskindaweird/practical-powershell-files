@@ -30,4 +30,4 @@ Select the number next to the program you want to grab. It'll install automatica
 
 Everything that has been added so far.
 
-<img src=https://raw.githubusercontent.com/strangetheproot/practical-powershell-files/main/images/cry.jpeg>
+<img src=https://raw.githubusercontent.com/joseyskindaweird/practical-powershell-files/main/images/cry.jpeg>
